@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class Department {
 	private Hospital hospital;
 
 	@OneToMany(mappedBy = "department")
+	@JsonManagedReference
 	private List<Doctor> doctor;
 
 	public Department(Integer dept_id, String dept_name, Hospital hospital, List<Doctor> doctor) {

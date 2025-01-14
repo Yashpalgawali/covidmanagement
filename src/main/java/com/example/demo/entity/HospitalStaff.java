@@ -57,7 +57,6 @@ public class HospitalStaff {
 
 	public HospitalStaff() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	

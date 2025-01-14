@@ -12,4 +12,5 @@ import com.example.demo.entity.HospitalStaff;
 public interface HospitalStaffRepository extends JpaRepository<HospitalStaff, Integer> {
 
 	public List<HospitalStaff> findByDepartment(Department department);
+ 
 }

@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -26,12 +27,13 @@ public class Department {
 
 	private String dept_name;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "hosp_id")
+	@JsonBackReference   // Prevent serializing the hospital from the department side
 	private Hospital hospital;
 
 	@OneToMany(mappedBy = "department")
-	@JsonManagedReference
+	@JsonManagedReference  // Serialize the list of doctors in the department
 	private List<Doctor> doctor;
 
 	public Department(Integer dept_id, String dept_name, Hospital hospital, List<Doctor> doctor) {

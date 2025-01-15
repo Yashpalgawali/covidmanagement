@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -40,8 +41,9 @@ public class DepartmentServImpl implements DepartmentService {
 
 	@Override
 	public Department getDepartmentByDeptId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Department> dept_obj = deptrepo.findById(id);
+		
+		return dept_obj.get();
 	}
 
 	@Override

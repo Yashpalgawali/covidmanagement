@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,25 +12,44 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name= "tbl_doctor")
-@SequenceGenerator(name = "doc_seq",allocationSize = 1,initialValue = 1)
+@Table(name = "tbl_doctor")
+@SequenceGenerator(name = "doc_seq", allocationSize = 1, initialValue = 1)
 public class Doctor {
 
 	@Id
-	@GeneratedValue(generator = "doc_seq" ,strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "doc_seq", strategy = GenerationType.AUTO)
 	private Integer doctor_id;
-	
+
 	@Column(unique = true)
 	private String doctor_num;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "dept_id")
-	@JsonBackReference
+	@JsonBackReference // Prevent serializing the department from the doctor side
 	private Department department;
+
+	@OneToMany(mappedBy = "doctor")
+	@JsonManagedReference // Serialize the list of patients under this doctor
+	private List<Patient> patients;
+
+	@ManyToOne
+	@JoinColumn(name = "desig_id", unique = false)
+	private Designation designation;
+
+	public Doctor(Integer doctor_id, String doctor_num, Department department, List<Patient> patients,
+			Designation designation) {
+		super();
+		this.doctor_id = doctor_id;
+		this.doctor_num = doctor_num;
+		this.department = department;
+		this.patients = patients;
+		this.designation = designation;
+	}
 
 	public Integer getDoctor_id() {
 		return doctor_id;
@@ -53,15 +75,24 @@ public class Doctor {
 		this.department = department;
 	}
 
-	public Doctor(Integer doctor_id, String doctor_num, Department department) {
-		super();
-		this.doctor_id = doctor_id;
-		this.doctor_num = doctor_num;
-		this.department = department;
+	public List<Patient> getPatients() {
+		return patients;
+	}
+
+	public void setPatients(List<Patient> patients) {
+		this.patients = patients;
+	}
+
+	public Designation getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(Designation designation) {
+		this.designation = designation;
 	}
 
 	public Doctor() {
 		super();
 	}
-	
+
 }

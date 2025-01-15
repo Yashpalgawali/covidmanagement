@@ -42,7 +42,7 @@ public class DepartmentController {
 	
 	
 	@GetMapping("/{id}")
-	public  Department getDepartmentByHospitalId(@PathVariable Integer id){
+	public  Department getDepartmentByDepartmentId(@PathVariable Integer id){
 		return deptserv.getDepartmentByDeptId(id);
 	}
 	

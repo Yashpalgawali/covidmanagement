@@ -32,7 +32,7 @@ public class HospitalController {
 
 	@PutMapping("/")
 	public Hospital updateHospital(@RequestBody Hospital hospital) {
-		int res = hospserv.updateHospital(hospital);
+		 hospserv.updateHospital(hospital);
 		Hospital hosp = hospserv.getHospitalById(hospital.getHosp_id());
 		return hosp;
 	}

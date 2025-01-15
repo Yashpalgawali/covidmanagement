@@ -1,11 +1,12 @@
 package com.example.demo.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -20,9 +21,15 @@ public class Designation {
 
 	private String desig_name;
 
-	@ManyToOne
-	@JoinColumn(name = "dept_id")
-	private Department department;
+	@OneToMany(mappedBy = "designation")
+	private List<Doctor> doctor;
+
+	public Designation(Integer desig_id, String desig_name, List<Doctor> doctor) {
+		super();
+		this.desig_id = desig_id;
+		this.desig_name = desig_name;
+		this.doctor = doctor;
+	}
 
 	public Integer getDesig_id() {
 		return desig_id;
@@ -40,19 +47,12 @@ public class Designation {
 		this.desig_name = desig_name;
 	}
 
-	public Department getDepartment() {
-		return department;
+	public List<Doctor> getDoctor() {
+		return doctor;
 	}
 
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-
-	public Designation(Integer desig_id, String desig_name, Department department) {
-		super();
-		this.desig_id = desig_id;
-		this.desig_name = desig_name;
-		this.department = department;
+	public void setDoctor(List<Doctor> doctor) {
+		this.doctor = doctor;
 	}
 
 	public Designation() {

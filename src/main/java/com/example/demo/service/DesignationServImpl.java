@@ -37,7 +37,8 @@ public class DesignationServImpl implements DesignationService {
 		Department dept = new Department();
 		 dept.setDept_id(dept_id);
 		
-		return desigrepo.findByDepartment(dept);
+		 return null;
+		//return desigrepo.findByDepartment(dept);
 	}
 
 	@Override

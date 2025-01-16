@@ -30,66 +30,124 @@ public class Doctor {
 
 	@ManyToOne
 	@JoinColumn(name = "dept_id")
-	@JsonBackReference // Prevent serializing the department from the doctor side
 	private Department department;
 
 	@OneToMany(mappedBy = "doctor")
-	@JsonManagedReference // Serialize the list of patients under this doctor
 	private List<Patient> patients;
 
-	@ManyToOne
-	@JoinColumn(name = "desig_id", unique = false)
-	private Designation designation;
-
-	public Doctor(Integer doctor_id, String doctor_num, Department department, List<Patient> patients,
-			Designation designation) {
+	
+	
+public Doctor(Integer doctor_id, String doctor_num, Department department, List<Patient> patients) {
 		super();
 		this.doctor_id = doctor_id;
 		this.doctor_num = doctor_num;
 		this.department = department;
 		this.patients = patients;
-		this.designation = designation;
 	}
+
+
+
+//	@ManyToOne
+//	@JoinColumn(name = "desig_id", unique = false)
+//	private Designation designation;
+//
+//	public Doctor(Integer doctor_id, String doctor_num, Department department, List<Patient> patients,
+//			Designation designation) {
+//		super();
+//		this.doctor_id = doctor_id;
+//		this.doctor_num = doctor_num;
+//		this.department = department;
+//		this.patients = patients;
+//		this.designation = designation;
+//	}
+//
+//	public Integer getDoctor_id() {
+//		return doctor_id;
+//	}
+//
+//	public void setDoctor_id(Integer doctor_id) {
+//		this.doctor_id = doctor_id;
+//	}
+//
+//	public String getDoctor_num() {
+//		return doctor_num;
+//	}
+//
+//	public void setDoctor_num(String doctor_num) {
+//		this.doctor_num = doctor_num;
+//	}
+//
+//	public Department getDepartment() {
+//		return department;
+//	}
+//
+//	public void setDepartment(Department department) {
+//		this.department = department;
+//	}
+//
+//	public List<Patient> getPatients() {
+//		return patients;
+//	}
+//
+//	public void setPatients(List<Patient> patients) {
+//		this.patients = patients;
+//	}
+//
+//	public Designation getDesignation() {
+//		return designation;
+//	}
+//
+//	public void setDesignation(Designation designation) {
+//		this.designation = designation;
+//	}
 
 	public Integer getDoctor_id() {
 		return doctor_id;
 	}
 
+
+
 	public void setDoctor_id(Integer doctor_id) {
 		this.doctor_id = doctor_id;
 	}
+
+
 
 	public String getDoctor_num() {
 		return doctor_num;
 	}
 
+
+
 	public void setDoctor_num(String doctor_num) {
 		this.doctor_num = doctor_num;
 	}
+
+
 
 	public Department getDepartment() {
 		return department;
 	}
 
+
+
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+
+
 
 	public List<Patient> getPatients() {
 		return patients;
 	}
 
+
+
 	public void setPatients(List<Patient> patients) {
 		this.patients = patients;
 	}
 
-	public Designation getDesignation() {
-		return designation;
-	}
 
-	public void setDesignation(Designation designation) {
-		this.designation = designation;
-	}
 
 	public Doctor() {
 		super();

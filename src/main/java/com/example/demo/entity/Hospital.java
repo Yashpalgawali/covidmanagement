@@ -24,7 +24,7 @@ public class Hospital {
 	private String hosp_name;
 
 	@OneToMany(mappedBy = "hospital")
-	@JsonManagedReference
+	@JsonManagedReference("deptlist-back")
 	private List<Department> department;
 
 	public Integer getHosp_id() {

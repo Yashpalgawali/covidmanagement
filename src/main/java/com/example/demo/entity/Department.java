@@ -29,11 +29,10 @@ public class Department {
 
 	@ManyToOne
 	@JoinColumn(name = "hosp_id")
-	@JsonBackReference   // Prevent serializing the hospital from the department side
+	@JsonBackReference("deptlist-back")
 	private Hospital hospital;
 
 	@OneToMany(mappedBy = "department")
-	@JsonManagedReference  // Serialize the list of doctors in the department
 	private List<Doctor> doctor;
 
 	public Department(Integer dept_id, String dept_name, Hospital hospital, List<Doctor> doctor) {

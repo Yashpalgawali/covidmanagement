@@ -29,7 +29,7 @@ public class Ward {
 
 	@ManyToOne
 	@JoinColumn(name = "ward_type_id" , unique = false)
-	@JsonBackReference
+	@JsonBackReference("ward-type")
 	private WardType wardtype;
 
 	@ManyToOne

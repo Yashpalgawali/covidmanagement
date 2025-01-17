@@ -31,7 +31,9 @@ public class CovCenBedController {
 	
 	@GetMapping("/")
 	public List<CovCenBed> getAllCovCenBeds(){
-		return covcenbedserv.getAllCovCenBeds();
+		List<CovCenBed> bedlist = covcenbedserv.getAllCovCenBeds();
+		bedlist.stream().forEach(beds -> System.out.println(beds.toString()));
+		return bedlist;
 	}
 	
 	@GetMapping("/covcenward/{wardid}")

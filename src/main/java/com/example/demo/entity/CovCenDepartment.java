@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Entity;
@@ -28,6 +29,7 @@ public class CovCenDepartment {
 
 	@ManyToOne
 	@JoinColumn(name = "covcen_id")
+	 
 	@JsonBackReference
 	private CovCenter covcenter;
 
@@ -35,26 +37,9 @@ public class CovCenDepartment {
 	@JsonManagedReference
 	private List<CovCenDoctor> covcendoctor;
 
-	public CovCenDepartment() {
-		super();
-	}
-
-	public CovCenDepartment(Integer covcendeptid, String covcendeptname, CovCenter covcenter,
-			List<CovCenDoctor> covcendoctor) {
-		super();
-		this.covcendeptid = covcendeptid;
-		this.covcendeptname = covcendeptname;
-		this.covcenter = covcenter;
-		this.covcendoctor = covcendoctor;
-	}
-
-	public List<CovCenDoctor> getCovcendoctor() {
-		return covcendoctor;
-	}
-
-	public void setCovcendoctor(List<CovCenDoctor> covcendoctor) {
-		this.covcendoctor = covcendoctor;
-	}
+	@OneToMany(mappedBy = "covcendept")
+	@JsonManagedReference
+	private List<CovCenWards> covcenwards;
 
 	public Integer getCovcendeptid() {
 		return covcendeptid;
@@ -80,4 +65,43 @@ public class CovCenDepartment {
 		this.covcenter = covcenter;
 	}
 
+	public List<CovCenDoctor> getCovcendoctor() {
+		return covcendoctor;
+	}
+
+	public void setCovcendoctor(List<CovCenDoctor> covcendoctor) {
+		this.covcendoctor = covcendoctor;
+	}
+
+	public List<CovCenWards> getCovcenwards() {
+		return covcenwards;
+	}
+
+	public void setCovcenwards(List<CovCenWards> covcenwards) {
+		this.covcenwards = covcenwards;
+	}
+
+	public CovCenDepartment(Integer covcendeptid, String covcendeptname, CovCenter covcenter,
+			List<CovCenDoctor> covcendoctor, List<CovCenWards> covcenwards) {
+		super();
+		this.covcendeptid = covcendeptid;
+		this.covcendeptname = covcendeptname;
+		this.covcenter = covcenter;
+		this.covcendoctor = covcendoctor;
+		this.covcenwards = covcenwards;
+	}
+
+	
+
+	@Override
+	public String toString() {
+		return "CovCenDepartment [covcendeptid=" + covcendeptid + ", covcendeptname=" + covcendeptname + ", covcenter="
+				+ covcenter + "]";
+	}
+
+	public CovCenDepartment() {
+		super();
+	}
+	
+	
 }

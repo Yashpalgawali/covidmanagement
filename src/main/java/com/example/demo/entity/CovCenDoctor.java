@@ -26,6 +26,13 @@ public class CovCenDoctor {
 	@JsonBackReference
 	private CovCenDepartment covcendept;
 
+	
+	@Override
+	public String toString() {
+		return "CovCenDoctor [covcendocid=" + covcendocid + ", covcendocname=" + covcendocname + ", covcendept="
+				+ covcendept + "]";
+	}
+
 	public Integer getCovcendocid() {
 		return covcendocid;
 	}

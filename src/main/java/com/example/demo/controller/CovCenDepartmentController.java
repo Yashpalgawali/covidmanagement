@@ -30,7 +30,9 @@ public class CovCenDepartmentController {
 	
 	@GetMapping("/")
 	public List<CovCenDepartment> getAllCovCenDepartments() {
-		return covcendeptserv.getAllCovCenDepartments();
+		List<CovCenDepartment> deptlist = covcendeptserv.getAllCovCenDepartments();
+		deptlist.stream().forEach(dept -> System.err.println(dept.toString()));
+		return deptlist;
 	}
 	
 	@GetMapping("/{dept_id}")

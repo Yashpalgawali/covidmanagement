@@ -27,6 +27,12 @@ public class CovCenter {
 	@JsonManagedReference
 	private List<CovCenDepartment> covcendept;
 
+
+	@Override
+	public String toString() {
+		return "CovCenter [covcen_id=" + covcen_id + ", covcennum=" + covcennum + "]";
+	}
+
 	public CovCenter(Integer covcen_id, String covcennum, List<CovCenDepartment> covcendept) {
 		super();
 		this.covcen_id = covcen_id;

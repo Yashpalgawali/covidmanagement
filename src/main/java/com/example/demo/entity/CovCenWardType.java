@@ -45,6 +45,13 @@ public class CovCenWardType {
 		this.cov_cen_ward_type = cov_cen_ward_type;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "CovCenWardType [cov_cen_ward_type_id=" + cov_cen_ward_type_id + ", cov_cen_ward_type="
+				+ cov_cen_ward_type + "]";
+	}
+
 	public CovCenWardType() {
 		super();
 	}

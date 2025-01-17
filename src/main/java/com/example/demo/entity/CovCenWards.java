@@ -28,6 +28,7 @@ public class CovCenWards {
 
 	@ManyToOne
 	@JoinColumn(name = "dept_id")
+	@JsonBackReference
 	private CovCenDepartment covcendept;
 
 	public CovCenWards(Integer covcenward_id, String covcenwardnum, CovCenWardType covcenwardtype,
@@ -69,6 +70,12 @@ public class CovCenWards {
 
 	public void setCovcenwardtype(CovCenWardType covcenwardtype) {
 		this.covcenwardtype = covcenwardtype;
+	}
+
+	@Override
+	public String toString() {
+		return "CovCenWards [covcenward_id=" + covcenward_id + ", covcenwardnum=" + covcenwardnum + ", covcenwardtype="
+				+ covcenwardtype + ", covcendept=" + covcendept + "]";
 	}
 
 	public CovCenWards() {

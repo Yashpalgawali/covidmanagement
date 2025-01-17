@@ -31,7 +31,9 @@ public class CovCenWardsController {
 	@GetMapping("/")
 	public List<CovCenWards> getAllCovCenWards() {
 		
-		return covcenwardserv.getAllCovCeWards();
+		List<CovCenWards> wardlist = covcenwardserv.getAllCovCeWards();
+		wardlist.stream().forEach(wards -> System.out.println(wards.toString()));
+		return wardlist;
 	}
 	
 	@GetMapping("/{ward_id}")

@@ -30,7 +30,9 @@ public class CovCenDocController {
 	
 	@GetMapping("/")
 	public List<CovCenDoctor> getAllCovCenDoctors(){
-		return covcendocserv.getAllCovCenDoctors();
+		List<CovCenDoctor> doclist = covcendocserv.getAllCovCenDoctors();
+		doclist.stream().forEach(doc-> System.err.println(doc.toString()));
+		return doclist;
 	}
 	
 	@GetMapping("/department/{dept_id}")

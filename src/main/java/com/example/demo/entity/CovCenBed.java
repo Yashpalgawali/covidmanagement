@@ -55,6 +55,12 @@ public class CovCenBed {
 		this.covcenward = covcenward;
 	}
 
+	@Override
+	public String toString() {
+		return "CovCenBed [covcenbed_id=" + covcenbed_id + ", covcenbed_num=" + covcenbed_num + ", covcenward="
+				+ covcenward + "]";
+	}
+
 	public CovCenBed() {
 		super();
 		// TODO Auto-generated constructor stub

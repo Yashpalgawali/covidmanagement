@@ -45,8 +45,13 @@ public class CovCenWardTypeController {
 	
 	@PutMapping("/")
 	public CovCenWardType updateWardType(@RequestBody CovCenWardType wardtype) {
-	
-		return null;
+		int res = wardtypeserv.updateCovCenWardType(wardtype);
+		if(res > 0 ) {
+			return this.getWardTypeById(wardtype.getCov_cen_ward_type_id());
+		}
+		else {
+			return null;
+		}
 	}
 	
 }

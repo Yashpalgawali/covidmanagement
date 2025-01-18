@@ -3,7 +3,9 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.CovCenter;
 import com.example.demo.repository.CoveCenterRepository;
@@ -43,9 +45,15 @@ public class CovCenterServImpl implements CovCenService {
 	}
 
 	@Override
+	
 	public CovCenter updateCovCenter(CovCenter covcen) {
-		// TODO Auto-generated method stub
-		return null;
+		int res = covcenrepo.updateCovidCenter(covcen.getCovcen_id(), covcen.getCovcennum());
+		if(res > 0) {
+			return this.getCovCenterById(covcen.getCovcen_id());
+		}
+		else {
+			return null;
+		}
 	}
 
 }

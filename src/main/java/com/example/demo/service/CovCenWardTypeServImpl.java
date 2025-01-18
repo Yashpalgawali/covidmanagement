@@ -3,7 +3,9 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.CovCenWardType;
 import com.example.demo.repository.CovCenWardTypeRepository;
@@ -45,8 +47,8 @@ public class CovCenWardTypeServImpl implements CovCenWardTypeService {
 
 	@Override
 	public int updateCovCenWardType(CovCenWardType wardtype) {
-		 
-		return 0;
+		
+		return wardtyperepo.updateWardTypeById(wardtype.getCov_cen_ward_type_id(), wardtype.getCov_cen_ward_type());
 	}
 
 }

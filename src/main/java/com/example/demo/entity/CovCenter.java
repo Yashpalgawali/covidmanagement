@@ -2,7 +2,10 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,6 +18,8 @@ import jakarta.persistence.Table;
 @Entity
 @SequenceGenerator(name = "covcenseq", allocationSize = 1, initialValue = 1)
 @Table(name = "tbl_cov_center")
+// @JsonIdentityInfo is used because the "covcenter" reference was not included in the result. used same in the CovCenDepartment entity 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "covcen_id")
 public class CovCenter {
 
 	@Id
@@ -24,7 +29,7 @@ public class CovCenter {
 	private String covcennum;
 
 	@OneToMany(mappedBy = "covcenter")
-	@JsonManagedReference
+	@JsonIgnore
 	private List<CovCenDepartment> covcendept;
 
 

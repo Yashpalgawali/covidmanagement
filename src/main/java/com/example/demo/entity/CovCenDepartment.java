@@ -3,8 +3,12 @@ package com.example.demo.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +22,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbl_covcen_department")
+//@JsonIdentityInfo is used because the "covcenter" reference was not included in the result
+// when tried to get all the departments with respective "covcenter".
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "covcendeptid")
+
 public class CovCenDepartment {
 
 	@Id
@@ -29,8 +37,7 @@ public class CovCenDepartment {
 
 	@ManyToOne
 	@JoinColumn(name = "covcen_id")
-	 
-	@JsonBackReference
+
 	private CovCenter covcenter;
 
 	@OneToMany(mappedBy = "covcendept")

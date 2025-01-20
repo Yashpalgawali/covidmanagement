@@ -40,8 +40,11 @@ public class CovCenterDepartmentServImpl implements CovCenDeptService {
 
 	@Override
 	public CovCenDepartment updateCovCenDepartment(CovCenDepartment covcendept) {
-		 
-		return null;
+		int obj = covcendeptrepo.updateCovCenDepartment(covcendept.getCovcendeptid(), covcendept.getCovcendeptname(), covcendept.getCovcenter().getCovcen_id());
+		if(obj>0)
+			return this.getCovCentDepartmentById(covcendept.getCovcendeptid());
+		else
+			return null;
 	}
 
 	@Override

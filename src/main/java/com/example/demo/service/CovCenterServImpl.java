@@ -44,9 +44,9 @@ public class CovCenterServImpl implements CovCenService {
 		}
 	}
 
-	@Override
-	
+	@Override	
 	public CovCenter updateCovCenter(CovCenter covcen) {
+		
 		int res = covcenrepo.updateCovidCenter(covcen.getCovcen_id(), covcen.getCovcennum());
 		if(res > 0) {
 			return this.getCovCenterById(covcen.getCovcen_id());

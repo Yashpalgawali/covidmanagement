@@ -26,6 +26,9 @@ public class CovCenBedController {
 	
 	@PostMapping("/")
 	public CovCenBed saveCovCenBed(@RequestBody CovCenBed covcenbed) {
+		
+		System.err.println(covcenbed.toString());
+		
 		return covcenbedserv.saveCovCenBed(covcenbed);
 	}
 	

@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,9 +11,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "tbl_cov_cen_wards")
+@Table(name = "tbl_cov_cen_wards", uniqueConstraints = @UniqueConstraint(columnNames = { "covcenwardnum" }))
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "covcenward_id", scope = CovCenWards.class)
 public class CovCenWards {
 
 	@Id
@@ -28,7 +31,6 @@ public class CovCenWards {
 
 	@ManyToOne
 	@JoinColumn(name = "dept_id")
-	@JsonBackReference
 	private CovCenDepartment covcendept;
 
 	public CovCenWards(Integer covcenward_id, String covcenwardnum, CovCenWardType covcenwardtype,

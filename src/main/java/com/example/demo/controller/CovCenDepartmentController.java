@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,7 +32,6 @@ public class CovCenDepartmentController {
 	@GetMapping("/")
 	public List<CovCenDepartment> getAllCovCenDepartments() {
 		List<CovCenDepartment> deptlist = covcendeptserv.getAllCovCenDepartments();
-		deptlist.stream().forEach(dept -> System.err.println(dept.toString()));
 		return deptlist;
 	}
 	
@@ -43,5 +43,10 @@ public class CovCenDepartmentController {
 	@GetMapping("/covcen/{covcenid}")
 	public List<CovCenDepartment> getAllCovCenDepartmentsByCovCenter(@PathVariable Integer covcenid) {
 		return covcendeptserv.getAllCovCenDepartmentsByCovCenter(covcenid);
+	}
+	
+	@PutMapping("/")
+	public CovCenDepartment updateCovCenDepartment(@RequestBody CovCenDepartment covcendept) {
+		return  covcendeptserv.updateCovCenDepartment(covcendept);
 	}
 }

@@ -12,6 +12,8 @@ public interface CovCenWardService {
 	
 	public List<CovCenWards> getAllCovCeWardByWardtype(Integer ward_type_id);
 	
+	public List<CovCenWards> getAllCovCeWardByDepartment(Integer dept_id);
+	
 	public CovCenWards getCovCenWardByWardId(Integer ward_id);
 	
 	public CovCenWards updateCovCenWards(CovCenWards covcenward);

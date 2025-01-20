@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,6 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbl_cov_cen_bed")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "covcenbed_id", scope = CovCenBed.class)
 public class CovCenBed {
 
 	@Id
@@ -63,7 +67,6 @@ public class CovCenBed {
 
 	public CovCenBed() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 }

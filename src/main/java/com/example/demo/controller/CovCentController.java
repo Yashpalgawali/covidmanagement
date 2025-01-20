@@ -23,23 +23,21 @@ public class CovCentController {
 		super();
 		this.covcenserv = covcenserv;
 	}
-	
+
 	@PostMapping("/")
 	public CovCenter saveCovCenter(@RequestBody CovCenter covcen) {
 		return covcenserv.saveCovCenter(covcen);
 	}
-	
-	
-	@GetMapping("/")
-	public List<CovCenter> getAllCovCenters(){
-		return covcenserv.getAllCovCenters();
-	} 
 
-	
+	@GetMapping("/")
+	public List<CovCenter> getAllCovCenters() {
+		return covcenserv.getAllCovCenters();
+	}
+
 	@GetMapping("/{id}")
-	public CovCenter getAllCovCenterById(@PathVariable Integer id){
+	public CovCenter getAllCovCenterById(@PathVariable Integer id) {
 		return covcenserv.getCovCenterById(id);
-	} 
+	}
 
 	@PutMapping("/")
 	public CovCenter updateCovCenter(@RequestBody CovCenter covcen) {

@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 @SequenceGenerator(name = "covcenseq", allocationSize = 1, initialValue = 1)
 @Table(name = "tbl_cov_center")
 // @JsonIdentityInfo is used because the "covcenter" reference was not included in the result. used same in the CovCenDepartment entity 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "covcen_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "covcen_id", scope = CovCenter.class)
 public class CovCenter {
 
 	@Id

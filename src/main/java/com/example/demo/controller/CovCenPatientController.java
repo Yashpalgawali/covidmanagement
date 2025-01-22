@@ -26,8 +26,10 @@ public class CovCenPatientController {
 	
 	@PostMapping("/")
 	public CovCenPatient saveCovCenPatient(@RequestBody CovCenPatient patient) {
-		
-		return covcenpatserv.saveCovCenPatient(patient);
+	
+		System.err.println("patient object "+patient.toString());
+		return null;
+//		return covcenpatserv.saveCovCenPatient(patient);
 	}
 	
 	@GetMapping("/")

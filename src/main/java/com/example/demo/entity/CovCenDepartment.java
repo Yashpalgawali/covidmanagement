@@ -21,7 +21,7 @@ import jakarta.persistence.Table;
 @Table(name = "tbl_covcen_department")
 //@JsonIdentityInfo is used because the "covcenter" reference was not included in the result
 // when tried to get all the departments with respective "covcenter".
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "covcendeptid",scope = CovCenDepartment.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "covcendeptid", scope = CovCenDepartment.class)
 public class CovCenDepartment {
 
 	@Id
@@ -36,12 +36,15 @@ public class CovCenDepartment {
 	private CovCenter covcenter;
 
 	@OneToMany(mappedBy = "covcendept")
-	@JsonManagedReference
+//	@JsonManagedReference
 	private List<CovCenDoctor> covcendoctor;
 
 	@OneToMany(mappedBy = "covcendept")
 	@JsonIgnore
 	private List<CovCenWards> covcenwards;
+
+	@OneToMany(mappedBy = "covcendept")
+	private List<CovCenPatient> covcenpatients;
 
 	public Integer getCovcendeptid() {
 		return covcendeptid;
@@ -93,8 +96,6 @@ public class CovCenDepartment {
 		this.covcenwards = covcenwards;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "CovCenDepartment [covcendeptid=" + covcendeptid + ", covcendeptname=" + covcendeptname + ", covcenter="
@@ -104,6 +105,5 @@ public class CovCenDepartment {
 	public CovCenDepartment() {
 		super();
 	}
-	
-	
+
 }

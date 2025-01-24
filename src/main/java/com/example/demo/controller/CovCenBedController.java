@@ -5,53 +5,37 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.CovCenBed;
-import com.example.demo.service.CovCenBedService;
+import com.example.demo.models.CovCenBed;
+import com.example.demo.repository.CovCenBedRepository;
 
 @RestController
 @RequestMapping("covcenbed")
 public class CovCenBedController {
 
-	private final CovCenBedService covcenbedserv;
+	private final CovCenBedRepository covcenbedrepo;
 
-	public CovCenBedController(CovCenBedService covcenbedserv) {
+	public CovCenBedController(CovCenBedRepository covcenbedrepo) {
 		super();
-		this.covcenbedserv = covcenbedserv;
+		this.covcenbedrepo = covcenbedrepo;
 	}
 	
 	@PostMapping("/")
-	public CovCenBed saveCovCenBed(@RequestBody CovCenBed covcenbed) {
-		
-		System.err.println(covcenbed.toString());
-		
-		return covcenbedserv.saveCovCenBed(covcenbed);
+	public CovCenBed saveCovCenBed(@RequestBody CovCenBed bed) {
+		return covcenbedrepo.save(bed);
 	}
 	
 	@GetMapping("/")
 	public List<CovCenBed> getAllCovCenBeds(){
-		List<CovCenBed> bedlist = covcenbedserv.getAllCovCenBeds();
-		bedlist.stream().forEach(beds -> System.out.println(beds.toString()));
-		return bedlist;
+		return covcenbedrepo.findAll();
 	}
 	
-	@GetMapping("/covcenward/{wardid}")
-	public List<CovCenBed> getAllCovCenBedsByWardId(@PathVariable Integer wardid){
-		return covcenbedserv.getAllCovCenBedsByWardId(wardid);
+	@GetMapping("/{id}")
+	public CovCenBed getCovCenBed(@PathVariable Integer id) {
+		return covcenbedrepo.findById(id).get();
 	}
 	
-	
-	@GetMapping("/{bedid}")
-	public CovCenBed getCovCenBedById(@PathVariable Integer bedid) {
-		return covcenbedserv.getCovCenBedByBedId(bedid);
-	}
-	
-	@PutMapping("/")
-	public CovCenBed updateCovCenBed(@RequestBody CovCenBed covcenbed) {
-		return covcenbedserv.updateCovCenBed(covcenbed);
-	}
 }

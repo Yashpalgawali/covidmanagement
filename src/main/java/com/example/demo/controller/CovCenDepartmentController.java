@@ -5,48 +5,36 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.CovCenDepartment;
-import com.example.demo.service.CovCenDeptService;
+import com.example.demo.models.CovCenDepartment;
+import com.example.demo.repository.CovCenDepartmentRepository;
 
 @RestController
 @RequestMapping("covcendept")
 public class CovCenDepartmentController {
 
-	private final CovCenDeptService covcendeptserv;
+	private final CovCenDepartmentRepository covcendeptrepo;
 
-	public CovCenDepartmentController(CovCenDeptService covcendeptserv) {
+	public CovCenDepartmentController(CovCenDepartmentRepository covcendeptrepo) {
 		super();
-		this.covcendeptserv = covcendeptserv;
+		this.covcendeptrepo = covcendeptrepo;
 	}
 	
 	@PostMapping("/")
-	public CovCenDepartment saveCovCenDepartment(@RequestBody CovCenDepartment covcendept) {
-		return  covcendeptserv.saveCovCenDepartment(covcendept);
+	public CovCenDepartment saveCovCenDepartment(@RequestBody CovCenDepartment dept) {
+		return covcendeptrepo.save(dept);
 	}
 	
 	@GetMapping("/")
-	public List<CovCenDepartment> getAllCovCenDepartments() {
-		List<CovCenDepartment> deptlist = covcendeptserv.getAllCovCenDepartments();
-		return deptlist;
+	public List<CovCenDepartment> getAllCovCenDepartments(){
+		return covcendeptrepo.findAll();
 	}
 	
 	@GetMapping("/{dept_id}")
-	public CovCenDepartment getCovCenDepartmentByDepartmentId(@PathVariable Integer dept_id) {
-		return covcendeptserv.getCovCentDepartmentById(dept_id);
-	}
-	
-	@GetMapping("/covcen/{covcenid}")
-	public List<CovCenDepartment> getAllCovCenDepartmentsByCovCenter(@PathVariable Integer covcenid) {
-		return covcendeptserv.getAllCovCenDepartmentsByCovCenter(covcenid);
-	}
-	
-	@PutMapping("/")
-	public CovCenDepartment updateCovCenDepartment(@RequestBody CovCenDepartment covcendept) {
-		return  covcendeptserv.updateCovCenDepartment(covcendept);
+	public CovCenDepartment getCovCenDepartmentbyId(@PathVariable Integer dept_id) {
+		return  covcendeptrepo.findById(dept_id).get();
 	}
 }

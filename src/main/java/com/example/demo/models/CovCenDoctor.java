@@ -1,11 +1,14 @@
 package com.example.demo.models;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -23,6 +26,9 @@ public class CovCenDoctor {
 	@ManyToOne
 	@JoinColumn(name = "covcendept_id")
 	private CovCenDepartment covcendoctor_dept;
+
+	@OneToMany(mappedBy = "covcen_patient_doctor")
+	private List<CovCenPatient> covcen_doctor_patients;
 
 	public Integer getCovcendoctor_id() {
 		return covcendoctor_id;
@@ -48,11 +54,21 @@ public class CovCenDoctor {
 		this.covcendoctor_dept = covcendoctor_dept;
 	}
 
-	public CovCenDoctor(Integer covcendoctor_id, String covcendoctor_name, CovCenDepartment covcendoctor_dept) {
+	public List<CovCenPatient> getCovcen_doctor_patients() {
+		return covcen_doctor_patients;
+	}
+
+	public void setCovcen_doctor_patients(List<CovCenPatient> covcen_doctor_patients) {
+		this.covcen_doctor_patients = covcen_doctor_patients;
+	}
+
+	public CovCenDoctor(Integer covcendoctor_id, String covcendoctor_name, CovCenDepartment covcendoctor_dept,
+			List<CovCenPatient> covcen_doctor_patients) {
 		super();
 		this.covcendoctor_id = covcendoctor_id;
 		this.covcendoctor_name = covcendoctor_name;
 		this.covcendoctor_dept = covcendoctor_dept;
+		this.covcen_doctor_patients = covcen_doctor_patients;
 	}
 
 	public CovCenDoctor() {
@@ -62,7 +78,8 @@ public class CovCenDoctor {
 	@Override
 	public String toString() {
 		return "CovCenDoctor [covcendoctor_id=" + covcendoctor_id + ", covcendoctor_name=" + covcendoctor_name
-				+ ", covcendoctor_dept=" + covcendoctor_dept + "]";
+				+ ", covcendoctor_dept=" + covcendoctor_dept + ", covcen_doctor_patients=" + covcen_doctor_patients
+				+ "]";
 	}
-
+	
 }
